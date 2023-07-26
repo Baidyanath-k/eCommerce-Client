@@ -93,6 +93,14 @@ const Home = () => {
                 ))}
               </Radio.Group>
             </div>
+            <div className="mt-10 text-center mx-auto">
+              <button
+                className="btn btn-active"
+                onClick={() => window.location.reload()}
+              >
+                Reset Filter
+              </button>
+            </div>
           </div>
           <div className="lg:w-4/5 md:w-4/5 w-4/5 mx-auto">
             <section className="text-gray-600 body-font">
