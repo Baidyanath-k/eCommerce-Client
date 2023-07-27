@@ -21,7 +21,7 @@ const HomeProduct = ({ product }) => {
             {name}
           </h1>
           <p className="leading-relaxed mb-3">
-            {description.substring(0, 30)}...
+            {description.substring(0, 25)}...
           </p>
           <p className="leading-relaxed mb-3">TK: {price}</p>
           <div className="flex items-center justify-between">

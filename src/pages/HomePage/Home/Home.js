@@ -12,6 +12,9 @@ const Home = () => {
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
   const [radio, setRadio] = useState([]);
+  const [totalProduct, setTotalProduct] = useState(0);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
   const getAllCategory = async () => {
     try {
       const result = await axios.get(
@@ -29,17 +32,56 @@ const Home = () => {
 
   const allProduct = async () => {
     try {
-      const result = await axios.get(
-        `${process.env.REACT_APP_API}/api/v1/product/get-products`
+      setLoading(true);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`
       );
-      setProducts(result?.data?.data);
+      setLoading(false);
+      setProducts(data?.products);
     } catch (error) {
+      setLoading(false);
       toast.error("Product not found");
     }
   };
   useEffect(() => {
     if (!checked.length || !radio.length) allProduct();
   }, [checked.length, radio.length]);
+
+  // pagination
+
+  const productsTotal = async () => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/product/product-count`
+      );
+      setTotalProduct(data?.total);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    productsTotal();
+  }, []);
+
+  const loadMore = async () => {
+    try {
+      setLoading(true);
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/product/product-list/${page}`
+      );
+      setLoading(false);
+      setProducts([...products, ...data?.products]);
+    } catch (error) {
+      setLoading(false);
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (page === 1) return;
+    loadMore();
+  }, [page]);
 
   // category filter show
   const handleFilter = (value, id) => {
@@ -93,7 +135,7 @@ const Home = () => {
                 ))}
               </Radio.Group>
             </div>
-            <div className="mt-10 text-center mx-auto">
+            <div className="my-10 text-center mx-auto">
               <button
                 className="btn btn-active"
                 onClick={() => window.location.reload()}
@@ -116,6 +158,19 @@ const Home = () => {
               </div>
             </section>
           </div>
+        </div>
+        <div className="text-center mb-6">
+          {products && products.length < totalProduct && (
+            <button
+              className="btn btn-active"
+              onClick={(e) => {
+                e.preventDefault();
+                setPage(page + 1);
+              }}
+            >
+              {loading ? "Loading....." : "Load More"}
+            </button>
+          )}
         </div>
       </section>
     </Main>
