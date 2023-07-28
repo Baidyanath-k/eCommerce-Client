@@ -2,6 +2,7 @@ import React from "react";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import SearchInput from "../SearchInput/SearchInput";
 
 const NavBar = () => {
   const { auth, setAuth } = useAuth();
@@ -46,13 +47,16 @@ const NavBar = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
+              <div className="block w-52">
+                <SearchInput></SearchInput>
+              </div>
               <li>
                 <Link className="text-lg font-semibold" to="/">
                   Home
                 </Link>
               </li>
               <li>
-                <Link className="text-lg font-semibold">Category</Link>
+                <Link className="text-lg font-semibold">Categoryss</Link>
                 <ul className="p-2">
                   <li>
                     <Link className="text-lg font-semibold">Submenu 1</Link>
@@ -64,11 +68,14 @@ const NavBar = () => {
               </li>
             </ul>
           </div>
-          <Link to="/" className="text-xl font-bold">
+          <Link to="/" className="text-xl font-bold w-1/3">
             eCommerce
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
+        <div className="hidden lg:flex">
+          <SearchInput></SearchInput>
+        </div>
+        <div className="navbar-end hidden lg:flex">
           <ul className="menu menu-horizontal px-1">
             <li>
               <Link to="/" className="text-lg font-semibold">
@@ -77,7 +84,7 @@ const NavBar = () => {
             </li>
             <li tabIndex={0}>
               <details>
-                <summary className="text-lg font-semibold">Category</summary>
+                <summary className="text-lg font-semibold">Categorys</summary>
                 <ul className="p-2">
                   <li>
                     <Link className="text-lg font-semibold">Submenu 1</Link>
@@ -90,7 +97,7 @@ const NavBar = () => {
             </li>
           </ul>
         </div>
-        <div className="navbar-end">
+        <div className="navbar-end w-1/3">
           <div className="flex justify-end flex-1 px-2">
             <div className="flex items-stretch">
               {auth?.token ? (

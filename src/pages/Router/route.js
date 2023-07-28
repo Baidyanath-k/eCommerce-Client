@@ -17,6 +17,7 @@ import AdminMain from "../Layout/AdminMain";
 import UserDashboardMain from "../Layout/UserDashboardMain";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
+import Search from "../Search/Search";
 
 // const router = createBrowserRouter([
 //   {
@@ -39,6 +40,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <Home></Home>,
+  },
+  {
+    path: "/search",
+    element: <Search></Search>
   },
   {
     path: "/register",
