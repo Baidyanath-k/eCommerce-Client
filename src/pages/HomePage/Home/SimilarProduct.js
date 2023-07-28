@@ -1,8 +1,8 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Link } from 'react-router-dom';
 
-const SearchProduct = ({ value }) => {
-  const { _id, category, description, name, price } = value;
+const SimilarProduct = ({ sProduct }) => {
+  const { _id, category, description, name, price } = sProduct;
   return (
     <div className="p-4 md:w-1/3">
       <div className="h-full border-2 border-gray-200 border-opacity-60 rounded-lg overflow-hidden">
@@ -23,11 +23,6 @@ const SearchProduct = ({ value }) => {
           </p>
           <p className="leading-relaxed mb-3">TK: {price}</p>
           <div className="flex items-center justify-between">
-            <Link to={`/productDetails/${_id}`} className="">
-              <button className="bg-gray-400 py-2 px-3 text-slate-200">
-                Details
-              </button>
-            </Link>
             <Link className="">
               <button className="bg-gray-400 py-2 px-3 text-slate-200">
                 Add to cart
@@ -40,4 +35,4 @@ const SearchProduct = ({ value }) => {
   );
 };
 
-export default SearchProduct;
+export default SimilarProduct;

@@ -2,28 +2,45 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Main from "../../Layout/Main";
+import SimilarProduct from "./SimilarProduct";
 
 const HomeProductDetails = () => {
   const { _id } = useParams();
   const [product, setProduct] = useState([]);
-  console.log(product);
+  const [similarProduct, setSimilarProduct] = useState([]);
+  console.log(similarProduct);
   const getSingleProduct = async () => {
     try {
       const result = await axios.get(
         `${process.env.REACT_APP_API}/api/v1/product/get-product/${_id}`
       );
       setProduct(result?.data?.data);
+      getSimilarProduct(
+        result?.data?.data._id,
+        result?.data?.data?.category?._id
+      );
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
     getSingleProduct();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  const getSimilarProduct = async (pid, cid) => {
+    try {
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API}/api/v1/product/similar-product/${pid}/${cid}`
+      );
+      setSimilarProduct(data?.products);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <Main>
-      <section className="text-gray-600 body-font overflow-hidden">
+      <section className="text-gray-600 body-font overflow-hidden min-h-screen">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
             <img
@@ -56,6 +73,24 @@ const HomeProductDetails = () => {
             </div>
           </div>
         </div>
+        <section className="text-gray-600 body-font mb-5">
+          <h2 className="text-center my-4 font-bold text-xl">
+            Similar Product
+          </h2>
+          <h2 className="text-center my-4 font-bold text-xl">
+            {similarProduct.length < 1 && "No Similar Product Found"}
+          </h2>
+          <div className="container px-5 mx-auto">
+            <div className="flex flex-wrap -m-4">
+              {similarProduct.map((sProduct) => (
+                <SimilarProduct
+                  key={sProduct._id}
+                  sProduct={sProduct}
+                ></SimilarProduct>
+              ))}
+            </div>
+          </div>
+        </section>
       </section>
     </Main>
   );
