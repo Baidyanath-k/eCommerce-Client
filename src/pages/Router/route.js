@@ -13,6 +13,7 @@ import Dashboard from "../Dashboard/Dashboard";
 import UserDashBoardProduct from "../Dashboard/UserDashBoardProduct";
 import ForgotPassword from "../ForgotPassword/ForgotPassword";
 import Home from "../HomePage/Home/Home";
+import HomeProductDetails from "../HomePage/Home/HomeProductDetails";
 import AdminMain from "../Layout/AdminMain";
 import UserDashboardMain from "../Layout/UserDashboardMain";
 import Login from "../Login/Login";
@@ -42,8 +43,12 @@ const router = createBrowserRouter([
     element: <Home></Home>,
   },
   {
+    path: "/productDetails/:_id",
+    element: <HomeProductDetails></HomeProductDetails>,
+  },
+  {
     path: "/search",
-    element: <Search></Search>
+    element: <Search></Search>,
   },
   {
     path: "/register",

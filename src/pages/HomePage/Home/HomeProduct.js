@@ -25,9 +25,9 @@ const HomeProduct = ({ product }) => {
           </p>
           <p className="leading-relaxed mb-3">TK: {price}</p>
           <div className="flex items-center justify-between">
-            <Link className="">
+            <Link to={`/productDetails/${_id}`} className="">
               <button className="bg-gray-400 py-2 px-3 text-slate-200">
-                Learn More
+                Details
               </button>
             </Link>
             <Link className="">
