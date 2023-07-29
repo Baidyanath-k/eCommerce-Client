@@ -9,6 +9,7 @@ import AdminProductUpdate from "../AdminDashboard/AdminProductUpdate";
 import AdminProducts from "../AdminDashboard/AdminProducts/AdminProducts";
 import ProductsDetails from "../AdminDashboard/AdminProducts/ProductsDetails";
 import AdminUser from "../AdminDashboard/AdminUser";
+import Categories from "../Categories/Categories";
 import Dashboard from "../Dashboard/Dashboard";
 import UserDashBoardProduct from "../Dashboard/UserDashBoardProduct";
 import ForgotPassword from "../ForgotPassword/ForgotPassword";
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
   {
     path: "/productDetails/:_id",
     element: <HomeProductDetails></HomeProductDetails>,
+  },
+  {
+    path: "/categories/:slug",
+    element: <Categories></Categories>,
   },
   {
     path: "/search",

@@ -2,10 +2,13 @@ import React from "react";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import useCategory from "../../hooks/useCategory";
 import SearchInput from "../SearchInput/SearchInput";
 
 const NavBar = () => {
   const { auth, setAuth } = useAuth();
+  const catagories = useCategory();
+  // console.log(catagories);
   const navigate = useNavigate();
   // console.log(auth?.user?.role);
   const handleLogOut = () => {
@@ -56,14 +59,18 @@ const NavBar = () => {
                 </Link>
               </li>
               <li>
-                <Link className="text-lg font-semibold">Categoryss</Link>
+                <Link className="text-lg font-semibold">Categories</Link>
                 <ul className="p-2">
-                  <li>
-                    <Link className="text-lg font-semibold">Submenu 1</Link>
-                  </li>
-                  <li>
-                    <Link className="text-lg font-semibold">Submenu 2</Link>
-                  </li>
+                  {catagories.map((cat) => (
+                    <li key={cat._id}>
+                      <Link
+                        to={`/categories/${cat.slug}`}
+                        className="text-lg font-semibold"
+                      >
+                        {cat.name}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </li>
             </ul>
@@ -84,14 +91,18 @@ const NavBar = () => {
             </li>
             <li tabIndex={0}>
               <details>
-                <summary className="text-lg font-semibold">Categorys</summary>
+                <summary className="text-lg font-semibold">Categories</summary>
                 <ul className="p-2">
-                  <li>
-                    <Link className="text-lg font-semibold">Submenu 1</Link>
-                  </li>
-                  <li>
-                    <Link className="text-lg font-semibold">Submenu 2</Link>
-                  </li>
+                  {catagories.map((cat) => (
+                    <li key={cat._id}>
+                      <Link
+                        to={`/categories/${cat.slug}`}
+                        className="text-lg font-semibold"
+                      >
+                        {cat.name}
+                      </Link>
+                    </li>
+                  ))}
                 </ul>
               </details>
             </li>
