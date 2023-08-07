@@ -1,13 +1,16 @@
+import { Badge } from "antd";
 import React from "react";
 import { toast } from "react-hot-toast";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/authContext";
+import { useCart } from "../../context/cartContext";
 import useCategory from "../../hooks/useCategory";
 import SearchInput from "../SearchInput/SearchInput";
 
 const NavBar = () => {
   const { auth, setAuth } = useAuth();
   const catagories = useCategory();
+  const[cart]=useCart()
   // console.log(catagories);
   const navigate = useNavigate();
   // console.log(auth?.user?.role);
@@ -19,6 +22,7 @@ const NavBar = () => {
     });
 
     localStorage.removeItem("auth");
+    localStorage.removeItem("cart");
     toast.success("Logout Successful");
     setTimeout(() => {
       navigate("/login");
@@ -26,7 +30,7 @@ const NavBar = () => {
   };
   return (
     // className="max-w-[1280px] mx-auto"
-    <div className="p-0 navbar bg-base-200">
+    <div className="p-0 navbar bg-base-200 sticky top-0 z-50">
       <div className="navbar container mx-auto">
         <div className="navbar-start">
           <div className="dropdown">
@@ -113,9 +117,12 @@ const NavBar = () => {
             <div className="flex items-stretch">
               {auth?.token ? (
                 <>
-                  <Link className="btn btn-ghost rounded-btn px-1">
-                    card(0)
-                  </Link>
+                  <Badge count={cart?.length} showZero>
+                    <Link to="/cart" className="btn btn-ghost rounded-btn px-1">
+                      card
+                    </Link>
+                  </Badge>
+
                   <div className="dropdown dropdown-end">
                     <label tabIndex={0} className="btn btn-ghost rounded-btn">
                       <h2 className="text-xl font-bold">

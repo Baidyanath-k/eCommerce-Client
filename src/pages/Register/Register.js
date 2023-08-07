@@ -15,14 +15,19 @@ const Register = () => {
   const handleRegister = async (event) => {
     event.preventDefault();
     try {
-      const res = await axios.post(
+      const { data } = await axios.post(
         `${process.env.REACT_APP_API}/api/v1/auth/register`,
-        { name, email, phone, address, password, answer }
+        { name, email, phone, address, password, answer },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
 
-      // console.log("data", res.data);
-      if (res && res.data) {
-        toast.success(res.data && res.data.message, {
+      console.log("data", data);
+      if (data) {
+        toast.success(data && data.message, {
           duration: 4000,
           position: "top-center",
         });
@@ -30,7 +35,7 @@ const Register = () => {
           navigate("/login");
         }, 1000);
       } else {
-        toast.error(res.data.message, {
+        toast.error(data.message, {
           duration: 20000,
           position: "top-center",
         });
@@ -81,9 +86,9 @@ const Register = () => {
                 </label>
                 <input
                   type="text"
+                  value={phone}
                   name="phone"
                   onChange={(event) => setPhone(event.target.value)}
-                  value={phone}
                   placeholder="Phone Number"
                   className="input input-bordered"
                 />

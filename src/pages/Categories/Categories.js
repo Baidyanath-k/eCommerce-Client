@@ -29,8 +29,11 @@ const Categories = () => {
     <Main>
       <div className="min-h-screen">
         <div className="my-4 text-center">
-          <h2>Category- {category.name}</h2>
-          <h2>Found {products.length} {products.length <= 1 ? "Product" : "Products"}</h2>
+          <h2 className="font-bold text-2xl">Category - {category.name}</h2>
+          <h2 className="font-bold text-xl my-2">
+            Found {products.length}{" "}
+            {products.length <= 1 ? "Product" : "Products"}
+          </h2>
         </div>
 
         <section className="text-gray-600 body-font">

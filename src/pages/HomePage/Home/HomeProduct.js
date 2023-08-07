@@ -1,9 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../context/authContext";
+import { useCart } from "../../../context/cartContext";
 
 const HomeProduct = ({ product }) => {
   // console.log(product);
+  const { auth } = useAuth();
   const { _id, category, description, name, price } = product;
+
+  const [cart, setCart] = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   return (
     <div className="p-4 md:w-1/3">
@@ -21,7 +29,9 @@ const HomeProduct = ({ product }) => {
             {name}
           </h1>
           <p className="leading-relaxed mb-3">
-            {description.substring(0, 25)}...
+            {description.length > 25
+              ? description.substring(0, 25) + "..."
+              : description}
           </p>
           <p className="leading-relaxed mb-3">TK: {price}</p>
           <div className="flex items-center justify-between">
@@ -31,7 +41,27 @@ const HomeProduct = ({ product }) => {
               </button>
             </Link>
             <Link className="">
-              <button className="bg-gray-400 py-2 px-3 text-slate-200">
+              <button
+                className={`bg-gray-400 py-2 px-3 text-slate-200 ${
+                  !auth.token && "disabled"
+                }`}
+                // disabled={!auth.token}
+                onClick={
+                  auth?.token
+                    ? () => {
+                        setCart([...cart, product]);
+                        localStorage.setItem(
+                          "cart",
+                          JSON.stringify([...cart, product])
+                        );
+                        toast.success("Product add to cart");
+                      }
+                    : () => {
+                        toast.success("Please Login") &&
+                          navigate(location.state || "/login");
+                      }
+                }
+              >
                 Add to cart
               </button>
             </Link>

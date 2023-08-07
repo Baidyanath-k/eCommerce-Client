@@ -27,7 +27,7 @@ const Login = () => {
         });
         setAuth({
           ...auth,
-          user: res.data.data,
+          user: res.data.user,
           token: res.data.token,
         });
 

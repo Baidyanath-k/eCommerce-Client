@@ -60,7 +60,7 @@ const HomeProductDetails = () => {
 
               <div className="flex my-7">
                 <span className="title-font font-medium text-2xl text-gray-900">
-                  ${product?.price}
+                  TK:{product?.price}
                 </span>
               </div>
               <div className="flex">

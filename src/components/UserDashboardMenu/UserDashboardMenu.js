@@ -1,9 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useAuth } from "../../context/authContext";
 
 const UserDashboardMenu = () => {
-  const { auth } = useAuth();
   return (
     <div>
       <div className="">
@@ -17,7 +15,7 @@ const UserDashboardMenu = () => {
         </li>
         <li>
           <Link to="user-dashboard-profile" className="text-center block">
-            {auth?.user?.name}
+            Update Profile
           </Link>
         </li>
       </ul>

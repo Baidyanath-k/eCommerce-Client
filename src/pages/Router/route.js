@@ -9,6 +9,7 @@ import AdminProductUpdate from "../AdminDashboard/AdminProductUpdate";
 import AdminProducts from "../AdminDashboard/AdminProducts/AdminProducts";
 import ProductsDetails from "../AdminDashboard/AdminProducts/ProductsDetails";
 import AdminUser from "../AdminDashboard/AdminUser";
+import CartPage from "../CartPage/CartPage";
 import Categories from "../Categories/Categories";
 import Dashboard from "../Dashboard/Dashboard";
 import UserDashBoardProduct from "../Dashboard/UserDashBoardProduct";
@@ -55,6 +56,7 @@ const router = createBrowserRouter([
     path: "/search",
     element: <Search></Search>,
   },
+
   {
     path: "/register",
     element: <Register></Register>,
@@ -63,7 +65,10 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Login></Login>,
   },
-
+  {
+    path: "/cart",
+    element: <CartPage></CartPage>,
+  },
   {
     path: "/forgot-password",
     element: <ForgotPassword></ForgotPassword>,

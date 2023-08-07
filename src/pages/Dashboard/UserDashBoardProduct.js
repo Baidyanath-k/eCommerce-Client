@@ -2,7 +2,7 @@ import React from 'react';
 
 const UserDashBoardProduct = () => {
     return (
-        <div>
+        <div className='min-h-screen'>
             <h2>This is user dashboard product</h2>
         </div>
     );
