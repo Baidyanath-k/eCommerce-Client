@@ -33,7 +33,7 @@ const CartPage = () => {
   };
 
   // get payment token
-  const getPyamentToken = async () => {
+  const getPaymentToken = async () => {
     try {
       const { data } = await axios.get(
         `${process.env.REACT_APP_API}/api/v1/payment-service/braintree/token`
@@ -45,7 +45,7 @@ const CartPage = () => {
   };
 
   useEffect(() => {
-    getPyamentToken();
+    getPaymentToken();
   }, [auth?.token]);
 
   const handlePayment = async () => {

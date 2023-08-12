@@ -30,6 +30,11 @@ const AdminMenu = () => {
           </Link>
         </li>
         <li>
+          <Link to="admin-dashboard-order" className="text-center block">
+            All Orders
+          </Link>
+        </li>
+        <li>
           <Link to="admin-dashboard-user" className="text-center block">
             Users
           </Link>

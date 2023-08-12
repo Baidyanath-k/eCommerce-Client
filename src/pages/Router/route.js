@@ -4,6 +4,7 @@ import UserPrivateRoute from "../../PrivateRoute/UserPrivateRoute";
 import NotFound from "../../components/NotFound/NotFound";
 
 import AdminCategory from "../AdminDashboard/AdminCategory";
+import AdminOrder from "../AdminDashboard/AdminOrder/AdminOrder";
 import AdminProduct from "../AdminDashboard/AdminProduct";
 import AdminProductUpdate from "../AdminDashboard/AdminProductUpdate";
 import AdminProducts from "../AdminDashboard/AdminProducts/AdminProducts";
@@ -92,6 +93,10 @@ const router = createBrowserRouter([
       {
         path: "/admin-dashboard/admin-dashboard-user",
         element: <AdminUser></AdminUser>,
+      },
+      {
+        path: "/admin-dashboard/admin-dashboard-order",
+        element:<AdminOrder></AdminOrder>
       },
       {
         path: "/admin-dashboard/admin-dashboard-products",
