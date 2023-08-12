@@ -10,7 +10,7 @@ const UserDashboardMenu = () => {
       <ul className="menu">
         <li type="btn" className="text-center">
           <Link to="/user-dashboard" className="text-center block ">
-            Product
+            Order
           </Link>
         </li>
         <li>
