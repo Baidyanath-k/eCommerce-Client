@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import { Prices } from "../../../components/priceFilter/priceFilter";
 import Main from "../../Layout/Main";
 import HomeProduct from "./HomeProduct";
+import SlickSlider from "./SlickSlider";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -112,6 +113,9 @@ const Home = () => {
 
   return (
     <Main title={"eCommerce-Shop Now"}>
+      <div className="container mx-auto">
+        <SlickSlider></SlickSlider>
+      </div>
       <section className="text-gray-600 body-font">
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col">
           <div className="lg:w-1/5 md:w-1/5 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left items-center text-center">
