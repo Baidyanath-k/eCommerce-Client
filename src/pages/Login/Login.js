@@ -82,7 +82,10 @@ const Login = () => {
                 />
               </div>
               <label className="label">
-                <Link to="/forgot-password" className="label-text-alt link link-hover">
+                <Link
+                  to="/forgot-password"
+                  className="label-text-alt link link-hover"
+                >
                   Forgot password?
                 </Link>
               </label>
@@ -92,6 +95,14 @@ const Login = () => {
                 </button>
               </div>
             </form>
+            <div className="">
+              <h2 className="text-center">
+                Don't have an account?{" "}
+                <span className="text-emerald-500">
+                  <Link to="/register">Sign Up</Link>
+                </span>{" "}
+              </h2>
+            </div>
           </div>
         </div>
       </div>

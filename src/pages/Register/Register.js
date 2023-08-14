@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Main from "../Layout/Main";
 
 const Register = () => {
@@ -139,6 +139,14 @@ const Register = () => {
                 </button>
               </div>
             </form>
+            <div className="">
+              <h2 className="text-center">
+                Have an account ?{" "}
+                <span className="text-emerald-500">
+                  <Link to="/login">Log in Now</Link>
+                </span>{" "}
+              </h2>
+            </div>
           </div>
         </div>
       </div>
